@@ -22,7 +22,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 笔记
 
-### 第四章准备工作
+### 第4章:准备工作
 
 1. 怎么在vue-cli 2.0中为webpack-dev-server加模拟api服务？
 
@@ -46,6 +46,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    // 这里开始配置，before函数为提供的生命钩子，app即devserver的实例
     before(app) {
       app.get('/api/seller', function(req,res) {
         res.json({
