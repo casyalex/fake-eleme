@@ -30,7 +30,7 @@ vuecli 2.0已经取消了dev-server.js的配置文件，node直接以webpack-dev
 
 要增加配置，主要在devServer处设置：
 
-``` bash
+``` javascript
 const appData = require('../data.json')
 const seller = appData.seller
 const goods = appData.goods
