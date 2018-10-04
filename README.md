@@ -72,3 +72,67 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 ...
 }
 ```
+### 第5章:v-Router
+
+1. 怎么配置默认路由？怎么调整vue-router的api？
+
+答：用redirect。同时可以应用vue-router的api，例如修改激活时的class name
+
+```javascript
+export default new Router({
+  linkActiveClass: 'active', // 自定义激活的classname
+  routes: [
+    {
+      path: '/',
+      redirect: '/goods' // 重定向实现默认路由
+    },
+    {
+      path: '/goods',
+      name: 'Goods',
+      component: goods
+    },
+    {
+      path: '/ratings',
+      name: 'Satings',
+      component: ratings
+    },
+    {
+      path: '/seller',
+      name: 'Seller',
+      component: seller
+    }
+  ]
+})
+```
+
+2. 怎么实现移动端的1px？
+
+答：首先用伪类实现1px的像素，然后通过-webkit-min-device-pixel-ratio与min-device-pixel-ratio媒询设备的DPR，对元素边框进行具体缩放。
+
+用伪类生成边框
+```stylus
+border-1px($color)
+  position relative
+  &:after
+    display block
+    position absolute
+    left 0
+    bottom: 0
+    width: 100%
+    border-top: 1px solid $color
+    content: ' '
+```
+
+全局定义样式 媒询设备的DPR
+```stylus
+@media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5)
+  .border-1px
+    &::after
+        -webkit-transform: scaleY(0.7)
+        transform: scaleY(0.7)
+@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2)
+  .border-1px
+    &::after
+        -webkit-transform: scaleY(0.5)
+        transform: scaleY(0.5)
+```
