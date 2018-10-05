@@ -136,3 +136,49 @@ border-1px($color)
         -webkit-transform: scaleY(0.5)
         transform: scaleY(0.5)
 ```
+### 第6章:header组件
+
+1. CSS sticky footer
+
+[科普文章](https://www.w3cplus.com/css3/css-secrets/sticky-footers.html)
+
+html布局
+```html
+<div class="detail-wrapper clearfix">
+  <div class="detail-main">
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+    <p>{{seller.bulletin}}</p>
+  </div>
+</div>
+<div class="detail-close">
+  <i class="icon-close"></i>
+</div>
+```
+
+CSS布局
+```stylus
+.detail-wrapper
+  min-height 100%
+  .detail-main
+    margin-top 64px
+    padding-bottom 64px
+.detail-close
+  position relative
+  width 32px
+  height 32px
+  margin -64px auto 0 auto
+  clear both
+  font-size 32px
+```
