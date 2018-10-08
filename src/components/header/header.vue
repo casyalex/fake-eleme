@@ -219,6 +219,7 @@ export default {
     // 这是vue 2.0的写法有问题
     background rgba(7,17,27,0.8)
     opacity 1
+    backdrop-filter blur(10px)
     &.fade-enter-active, &.fade-leave-active
       transition all 0.5s
     &.fade-enter, &.fade-leave-to
