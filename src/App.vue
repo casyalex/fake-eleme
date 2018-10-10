@@ -35,7 +35,6 @@ export default {
     this.$http.get('api/seller').then((res) => {
       res = res.data
       if (res.error === ERR_OK) {
-        console.log(res)
         this.seller = res.data
       }
     })
