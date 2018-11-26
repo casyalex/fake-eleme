@@ -32,7 +32,7 @@
                   <span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <cartcontrol @cartadd="cartAdd" :food="food"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -41,6 +41,7 @@
       </ul>
     </div>
     <shopcart
+      ref="shopcart"
       :select-foods="selectFoods"
       :delivery-price="seller.deliveryPrice"
       :min-price="seller.minPrice"
@@ -85,7 +86,7 @@ export default {
       this.goods.forEach((good) => {
         good.foods.forEach((food) => {
           if (food.count) {
-            foods.push(food);
+            foods.push(food)
           }
         })
       })
@@ -134,6 +135,11 @@ export default {
       let foodList = this.$refs.foodWrapper.getElementsByClassName('food-list-hook')
       let el = foodList[index]
       this.foodScroll.scrollToElement(el, 300)
+    },
+    cartAdd (tar) {
+      this.$nextTick(() => {
+        this.$refs.shopcart.drop(tar)
+      })
     }
   },
   components: {
