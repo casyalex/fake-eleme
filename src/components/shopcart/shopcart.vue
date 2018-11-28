@@ -32,7 +32,7 @@
           <h1 class="title">购物车</h1>
           <span class="empty">清空</span>
         </div>
-        <div class="list-content">
+        <div class="list-content" ref="listContent">
           <ul>
             <li class="food" v-for="(food,index) in selectFoods" :key="index">
               <span class="name">{{food.name}}</span>
@@ -52,7 +52,9 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 import cartcontrol from 'components/cartcontrol/cartcontrol'
+
 export default {
   props: {
     selectFoods: {
@@ -143,6 +145,19 @@ export default {
       if (newVal === 0) {
         this.fold = true
       }
+    },
+    fold: function (newVal) {
+      if (!newVal) {
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$refs.listContent, {
+              click: true
+            })
+          } else {
+            this.scroll.refresh()
+          }
+        })
+      }
     }
   },
   methods: {
@@ -207,6 +222,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import "~@/common/stylus/mixin.styl"
+
 .shopcart
   position fixed
   left 0
@@ -337,4 +354,25 @@ export default {
       max-height 217px
       background #fff
       overflow hidden
+      .food
+        position relative
+        padding 12px 0
+        box-sizing border-box
+        border-1px(rgba(7, 17, 27, 0.1))
+        .name
+          line-height 24px
+          font-size 14px
+          color rgb(7, 17, 27)
+        .price
+          position absolute
+          right 90px
+          bottom 12px
+          line-height 24px
+          font-size 14px
+          font-weight 700
+          color rgb(240, 20, 20)
+        .cartcontrol-wrapper
+          position absolute
+          right 0
+          bottom 6px
 </style>
